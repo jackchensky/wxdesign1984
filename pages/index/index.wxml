@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class='weather-wrapper'>
-  <view class='temp'>12℃</view>
+  <view class='temp'>15℃</view>
   <view class='wheatherstyle'>晴转多云</view>
   <image class='weather-bg' src="/images/sunny-bg.png" mode='scaleToFill'>
   </image>
