@@ -22,7 +22,16 @@ Page({
     nowWeather: '',
     nowWeatherBackground: ''
   },
+  onPullDownRefresh(){
+    this.getNow(()=>{
+      wx.stopPullDownRefresh()
+    })
+
+  },
   onLoad(){
+    this.getNow()
+  },
+  getNow(callback){
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now', //仅为示例，并非真实的接口地址
       data: {
@@ -42,6 +51,9 @@ Page({
           frontColor: '#000000',
           backgroundColor: weatherColorMap[weather],
         })
+      },
+      complete: ()=>{
+        callback && callback()
       }
     })
   }
