@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class='weather-wrapper'>
-  <view class='temp'>15℃</view>
-  <view class='wheatherstyle'>晴转多云</view>
-  <image class='weather-bg' src="/images/sunny-bg.png" mode='scaleToFill'>
+  <view class='temp'>{{nowTemp}}</view>
+  <view class='wheatherstyle'>{{nowWeather}}</view>
+  <image class='weather-bg' src="{{nowWeatherBackground}}" mode='scaleToFill'>
   </image>
 </view>
