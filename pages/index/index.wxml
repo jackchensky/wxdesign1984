@@ -9,3 +9,13 @@
   <image class='timetips-icon' src='/images/time-icon.png'></image>
   <view class='timetips-text'>未来24小时天气预测</view>
 </view>
+
+<scroll-view scroll-x>
+  <view class='forecast-list'>
+    <view class='forecast-item' wx:for="{{forecast}}">
+      <view class='forecast-time'>{{item}}</view>
+      <image class='forecast-weather' src='/images/sunny-icon.png'></image>
+      <view class='forecast-temp'>{{item}}</view>
+    </view>
+  </view>
+</scroll-view>
