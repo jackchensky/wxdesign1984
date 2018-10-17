@@ -16,12 +16,20 @@ const weatherColorMap = {
   'snow': '#aae1fc'
 }
 
+const QQMapWX = require(
+  '../../libs/qqmap-wx-jssdk.js'
+  )
+
 Page({
   data: {
     nowTemp: '',
     nowWeather: '',
     nowWeatherBackground: '',
-    hourlyWeather: []
+    hourlyWeather: [],
+    todayTemp:'',
+    todayDate:'',
+    city:'上海',
+    locationTipsText:'点击获取当前位置'
   },
   onPullDownRefresh(){
     this.getNow(()=>{
@@ -30,13 +38,16 @@ Page({
 
   },
   onLoad(){
+    this.qqmapsdk = new QQMapWX({
+      key: 'EAXBZ-33R3X-AA64F-7FIPQ-BY27J-5UF5B'
+    })
     this.getNow()
   },
   getNow(callback){
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now', //仅为示例，并非真实的接口地址
       data: {
-        city: '盐城市',
+        city: this.data.city,
       },
       success: res => {
         console.log(res)
@@ -96,6 +107,27 @@ Page({
   onTapDayWeather(){
     wx.navigateTo({
       url: '/pages/list/list',
+    })
+  },
+
+onTapLocation(){
+    wx.getLocation({
+      success: res=>{
+        this.qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: res=>{
+            let city = res.result.address_component.city
+            this.setData({
+              city: city,
+              locationTipsText:''
+            })
+            this.getNow()
+          }
+        })
+      },
     })
   }
 })
