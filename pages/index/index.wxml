@@ -1,5 +1,12 @@
 <!--index.wxml-->
 <view class='weather-wrapper'>
+  <view class='location-wrapper'>
+    <view class='location'>
+      <image class='location-icon' src='/images/location-icon.png'></image>
+      <view class='location-text'>盐城市</view>
+    </view>
+    <view class='location-tips'>点击获取当前位置</view>
+  </view>
   <view class='temp'>{{nowTemp}}</view>
   <view class='wheatherstyle'>{{nowWeather}}</view>
   <image class='weather-bg' src="{{nowWeatherBackground}}" mode='scaleToFill'>
